@@ -1,0 +1,33 @@
+name: Verify synthetic LiDAR demo
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Train and evaluate synthetic demo
+        run: python -m src.perception --epochs 12 --train-scenes 30
+      - name: Store reproducible visual and metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/intersection_predictions.png outputs/metrics.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update generated synthetic LiDAR visualization and evaluation [skip ci]"
+            git push
+          fi
