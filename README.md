@@ -1,6 +1,6 @@
 # LiDAR Intersection Perception — Educational Mini Project
 
-A reproducible **software-only** Python/PyTorch prototype of 3D road-intersection perception. It creates synthetic XYZI points, trains a small pointwise MLP to classify **ground, pedestrians, cyclists, and vehicles**, clusters foreground predictions with DBSCAN, and evaluates results on held-out synthetic scenes.
+A reproducible **software only** Python/PyTorch prototype of 3D road-intersection perception. It creates synthetic XYZI points, trains a small pointwise MLP to classify **ground, pedestrians, cyclists, and vehicles**, clusters foreground predictions with DBSCAN, and evaluates results on held-out synthetic scenes.
 
 > **Scope:** This is NOT real LiDAR data, a RoboSense Airy 96 integration, Raspberry Pi/Jetson work, embedded deployment, ROS/ROS2, or real-world validation. It is also NOT PointNet. The project does not satisfy requirements for prior hands-on embedded hardware experience.
 
