@@ -4,6 +4,12 @@ A reproducible **software-only** Python/PyTorch prototype of 3D road-intersectio
 
 > **Scope:** This is NOT real LiDAR data, a RoboSense Airy 96 integration, Raspberry Pi/Jetson work, embedded deployment, ROS/ROS2, or real-world validation. It is also NOT PointNet. The project does not satisfy requirements for prior hands-on embedded hardware experience.
 
+## Example output
+
+![Generated synthetic intersection point-cloud labels and model predictions](outputs/intersection_predictions.png)
+
+This picture is produced by running `python -m src.perception` on **synthetic** points. If it is not displayed yet, open the [verification workflow](https://github.com/Inshal-git/3D-point-cloud-and-ML-analysis/actions/workflows/verify.yml) and run it to generate and commit the example outputs.
+
 ## Features
 - Seeded synthetic point cloud generation and labels
 - 9-dimensional per-point features combining normalized coordinates, reflectance and neighbour geometry
@@ -23,7 +29,7 @@ python -m venv .venv
 Start-Process ".\outputs\intersection_predictions.png"
 ```
 
-This generates `outputs/intersection_predictions.png`, `outputs/metrics.json`, and `outputs/point_mlp.pt`. Output files are generated locally and do not need to be downloaded from this repository.
+This generates `outputs/intersection_predictions.png`, `outputs/metrics.json`, and `outputs/point_mlp.pt`. The GitHub Actions workflow also regenerates the synthetic plot and metrics on the main branch after code changes. Model weights remain local and are not committed.
 
 ## Structure
 - `src/perception.py` — simulation, feature extraction, neural network, training, evaluation, visualization, clustering
